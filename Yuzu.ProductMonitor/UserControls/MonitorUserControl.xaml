@@ -20,6 +20,7 @@
                 <ColumnDefinition Width="200" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
+            <!--  第一行：第一列  -->
             <StackPanel
                 Grid.Column="0"
                 HorizontalAlignment="Center"
@@ -44,8 +45,86 @@
                         Text="{Binding WeekDay}" />
                 </StackPanel>
             </StackPanel>
+            <!--  第一行：第二列  -->
+            <StackPanel
+                Grid.Column="1"
+                Margin="20,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+
+                <StackPanel.Resources>
+                    <DataTemplate x:Key="countDataTemplate">
+                        <Border
+                            Width="15"
+                            Margin="2,0"
+                            Background="#3318aabd">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="16"
+                                Foreground="White"
+                                Text="{Binding}" />
+                        </Border>
+                    </DataTemplate>
+                </StackPanel.Resources>
+                <!--  &#13：换行符  -->
+                <!--  机台总数  -->
+                <TextBlock
+                    Margin="20,0"
+                    VerticalAlignment="Center"
+                    FontSize="10"
+                    Foreground="#99ffffff"
+                    Text="机台&#13;总数" />
+                <ItemsControl ItemTemplate="{StaticResource countDataTemplate}" ItemsSource="{Binding MachineCount}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+
+                <!--  生产计数  -->
+                <TextBlock
+                    Margin="20,0"
+                    VerticalAlignment="Center"
+                    FontSize="10"
+                    Foreground="#99ffffff"
+                    Text="生产&#13;计数" />
+                <ItemsControl ItemTemplate="{StaticResource countDataTemplate}" ItemsSource="{Binding ProductCount}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+
+                <!--  不良计数  -->
+                <TextBlock
+                    Margin="20,0"
+                    VerticalAlignment="Center"
+                    FontSize="10"
+                    Foreground="#99ffffff"
+                    Text="生产&#13;计数" />
+                <ItemsControl ItemTemplate="{StaticResource countDataTemplate}" ItemsSource="{Binding BadCount}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </StackPanel>
+
+            <!--  配置按钮  -->
+            <Button
+                Grid.Column="2"
+                Width="80"
+                Height="35"
+                Margin="20,0"
+                HorizontalAlignment="Right"
+                Content="配置"
+                Style="{StaticResource BtnStyle}"
+                Tag="&#xe6bb;" />
         </Grid>
-        <!--  第一行：第一列  -->
-        <!--  第一行：第二列  -->
     </Grid>
 </UserControl>

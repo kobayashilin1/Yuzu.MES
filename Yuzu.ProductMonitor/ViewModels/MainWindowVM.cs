@@ -20,9 +20,9 @@ namespace Yuzu.ProductMonitor.ViewModels
         public string Time
         {
             get => time;
-            set 
-            { 
-                if (time != value) { time = value; RaisePropertyChanged(); } 
+            set
+            {
+                if (time != value) { time = value; RaisePropertyChanged(); }
             }
         }
 
@@ -30,9 +30,9 @@ namespace Yuzu.ProductMonitor.ViewModels
         public string Date
         {
             get => date;
-            set 
-            { 
-                if (date != value) { date = value; RaisePropertyChanged(); } 
+            set
+            {
+                if (date != value) { date = value; RaisePropertyChanged(); }
             }
         }
 
@@ -65,7 +65,6 @@ namespace Yuzu.ProductMonitor.ViewModels
         {
             get
             {
-                // 若为空，则实例化一个 UserContro 控件
                 return monitorUserControl;
             }
             set
@@ -75,9 +74,57 @@ namespace Yuzu.ProductMonitor.ViewModels
             }
         }
 
+        // 机台总数
+        private string machineCount;
+        public string MachineCount
+        {
+            get => machineCount;
+            set
+            {
+                if (machineCount != value)
+                {
+                    machineCount = value; RaisePropertyChanged();
+                }
+            }
+        }
+
+        // 生产计数
+        private string productCount;
+        public string ProductCount
+        {
+            get => productCount;
+            set
+            {
+                if (productCount != value)
+                {
+                    productCount = value; RaisePropertyChanged();
+                }
+            }
+        }
+
+        // 不良计数
+        private string badCount;
+        public string BadCount
+        {
+            get => badCount;
+            set
+            {
+                if (badCount != value)
+                {
+                    badCount = value; RaisePropertyChanged();
+                }
+            }
+        }
+
         public MainWindowVM()
         {
             MonitorUserControl = new MonitorUserControl();
+
+            // 真实场景数据是即时产生的
+            machineCount = "0442";
+            ProductCount = "11423";
+            BadCount = "0122";
+
             InitializeTimer();
         }
     }

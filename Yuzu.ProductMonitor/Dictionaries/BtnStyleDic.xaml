@@ -1,0 +1,43 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="BtnStyle" TargetType="{x:Type Button}">
+        <Setter Property="Foreground" Value="#999" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                        x:Name="border"
+                        Background="Transparent"
+                        BorderThickness="1">
+                        <!--  渐变色  -->
+                        <Border.BorderBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1, 0">
+                                <GradientStop Offset="0" Color="#22ffffff" />
+                                <GradientStop Offset="0.5" Color="#77ffffff" />
+                                <GradientStop Offset="1" Color="#22ffffff" />
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <!--  Tag 为按钮上的文字  -->
+                            <TextBlock
+                                Margin="0,0,5,0"
+                                FontFamily="../Resource/Fonts/#iconfont"
+                                Text="{TemplateBinding Tag}" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Text="{TemplateBinding Content}" />
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#11ffffff" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
