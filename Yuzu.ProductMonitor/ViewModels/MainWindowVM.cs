@@ -154,6 +154,21 @@ namespace Yuzu.ProductMonitor.ViewModels
         }
         #endregion
 
+        #region 设备属性
+        private List<DeviceModels> deviceList;
+        public List<DeviceModels> DeviceList
+        {
+            get=> deviceList;
+            set
+            {
+                if(deviceList != value)
+                {
+                    deviceList = value; RaisePropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         #region 构造器
         public MainWindowVM()
         {
@@ -181,6 +196,18 @@ namespace Yuzu.ProductMonitor.ViewModels
             AlarmList.Add(new AlarmModel() { Code = "03", Duration = 6, Message = "设备转速过快", Time = "2024-08-02" });
             AlarmList.Add(new AlarmModel() { Code = "04", Duration = 1, Message = "设备气压过低", Time = "2024-08-01" });
             AlarmList.Add(new AlarmModel() { Code = "05", Duration = 3, Message = "设备脱机", Time = "2024-08-01" });
+            #endregion
+
+            #region 初始化设备数据
+            DeviceList = new List<DeviceModels>();
+            DeviceList.Add(new DeviceModels { DeviceItemName = "电能(KWh)", DeviceItemValue = 60.8 });
+            DeviceList.Add(new DeviceModels { DeviceItemName = "电压(V)", DeviceItemValue = 420 });
+            DeviceList.Add(new DeviceModels { DeviceItemName = "电流(A)", DeviceItemValue = 12 });
+            DeviceList.Add(new DeviceModels { DeviceItemName = "压强(KPa)", DeviceItemValue = 13 });
+            DeviceList.Add(new DeviceModels { DeviceItemName = "湿度(%)", DeviceItemValue = 52 });
+            DeviceList.Add(new DeviceModels { DeviceItemName = "震动(mm/s)", DeviceItemValue = 3.2 });
+            DeviceList.Add(new DeviceModels { DeviceItemName = "转速(rpm)", DeviceItemValue = 7200 });
+            DeviceList.Add(new DeviceModels { DeviceItemName = "气压(KPa)", DeviceItemValue = 10 });
             #endregion
 
             InitializeTimer();
