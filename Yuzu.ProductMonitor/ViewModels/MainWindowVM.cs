@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 using Yuzu.ProductMonitor.UserControls;
 using Yuzu.ProductMonitor.Models;
+using System.Collections.ObjectModel;
 
 namespace Yuzu.ProductMonitor.ViewModels
 {
@@ -158,12 +159,27 @@ namespace Yuzu.ProductMonitor.ViewModels
         private List<DeviceModels> deviceList;
         public List<DeviceModels> DeviceList
         {
-            get=> deviceList;
+            get => deviceList;
             set
             {
-                if(deviceList != value)
+                if (deviceList != value)
                 {
                     deviceList = value; RaisePropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region 雷达图属性
+        private List<RaderModel> raderList;
+        public List<RaderModel> RaderList
+        {
+            get => raderList;
+            set
+            {
+                if (raderList != value)
+                {
+                    raderList = value; RaisePropertyChanged();
                 }
             }
         }
@@ -208,6 +224,16 @@ namespace Yuzu.ProductMonitor.ViewModels
             DeviceList.Add(new DeviceModels { DeviceItemName = "震动(mm/s)", DeviceItemValue = 3.2 });
             DeviceList.Add(new DeviceModels { DeviceItemName = "转速(rpm)", DeviceItemValue = 7200 });
             DeviceList.Add(new DeviceModels { DeviceItemName = "气压(KPa)", DeviceItemValue = 10 });
+            #endregion
+
+            #region 初始化雷达图数据
+            RaderList = new List<RaderModel>();
+            raderList.Add(new RaderModel { ItemName = "排水烟风机", ItemValue = 90 });
+            raderList.Add(new RaderModel { ItemName = "客梯", ItemValue = 45 });
+            raderList.Add(new RaderModel { ItemName = "供水机", ItemValue = 56 });
+            raderList.Add(new RaderModel { ItemName = "喷淋水泵", ItemValue = 90 });
+            raderList.Add(new RaderModel { ItemName = "稳压设备", ItemValue = 67.2 });
+            raderList.Add(new RaderModel { ItemName = "变电设备", ItemValue = 83 });
             #endregion
 
             InitializeTimer();

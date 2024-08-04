@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:Yuzu.ProductMonitor.UserControls"
     xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:radar="clr-namespace:Yuzu.ProductMonitor.UserControls"
     Width="1200"
     Height="675"
     mc:Ignorable="d">
@@ -580,7 +581,8 @@
                 </GroupBox>
                 <!--  第二行：第三列：第一行：能耗模块  -->
                 <GroupBox Header="能耗" Style="{StaticResource groupBoxStyle}">
-
+                    <!--  这里使用了雷达图：定义一个用户控件  -->
+                    <radar:RaderUserControl ItemSource="{Binding RaderList}"/>
                 </GroupBox>
                 <GroupBox Header="人力" Style="{StaticResource groupBoxStyle}" />
             </UniformGrid>
