@@ -125,14 +125,36 @@ namespace Yuzu.ProductMonitor.ViewModels
         #endregion
 
         #region 环境监控数据
-        private List<EnvironmentModels> environmentModelList = new List<EnvironmentModels>();
-        public List<EnvironmentModels> EnvironmentModelList
+        private List<EnvironmentModel> environmentModelList = new List<EnvironmentModel>();
+        public List<EnvironmentModel> EnvironmentModelList
         {
             get => environmentModelList;
-            set { environmentModelList = value; RaisePropertyChanged(); }
+            set
+            {
+                if (environmentModelList != value)
+                {
+                    environmentModelList = value; RaisePropertyChanged();
+                }
+            }
         }
         #endregion
 
+        #region 报警属性
+        private List<AlarmModel> alarmList;
+        public List<AlarmModel> AlarmList
+        {
+            get => alarmList;
+            set
+            {
+                if (alarmList != value)
+                {
+                    alarmList = value; RaisePropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region 构造器
         public MainWindowVM()
         {
             MonitorUserControl = new MonitorUserControl();
@@ -142,16 +164,27 @@ namespace Yuzu.ProductMonitor.ViewModels
             ProductCount = "11423";
             BadCount = "0122";
 
-            // 初始化环境监控数据：生产环境中从下位机获取
-            EnvironmentModelList.Add(new EnvironmentModels { EnvironmentItemName = "光照(Lux)", EnvironmentItemValue = 123 });
-            EnvironmentModelList.Add(new EnvironmentModels { EnvironmentItemName = "噪音(dB)", EnvironmentItemValue = 55 });
-            EnvironmentModelList.Add(new EnvironmentModels { EnvironmentItemName = "温度(℃)", EnvironmentItemValue = 30 });
-            EnvironmentModelList.Add(new EnvironmentModels { EnvironmentItemName = "湿度(%)", EnvironmentItemValue = 90 });
-            EnvironmentModelList.Add(new EnvironmentModels { EnvironmentItemName = "PM2.5(m³)", EnvironmentItemValue = 40 });
-            EnvironmentModelList.Add(new EnvironmentModels { EnvironmentItemName = "硫化氢(PPM)", EnvironmentItemValue = 15 });
-            EnvironmentModelList.Add(new EnvironmentModels { EnvironmentItemName = "氮气(PPM)", EnvironmentItemValue = 20 });
+            #region 初始化环境监控数据
+            EnvironmentModelList.Add(new EnvironmentModel { EnvironmentItemName = "光照(Lux)", EnvironmentItemValue = 123 });
+            EnvironmentModelList.Add(new EnvironmentModel { EnvironmentItemName = "噪音(dB)", EnvironmentItemValue = 55 });
+            EnvironmentModelList.Add(new EnvironmentModel { EnvironmentItemName = "温度(℃)", EnvironmentItemValue = 30 });
+            EnvironmentModelList.Add(new EnvironmentModel { EnvironmentItemName = "湿度(%)", EnvironmentItemValue = 90 });
+            EnvironmentModelList.Add(new EnvironmentModel { EnvironmentItemName = "PM2.5(m³)", EnvironmentItemValue = 40 });
+            EnvironmentModelList.Add(new EnvironmentModel { EnvironmentItemName = "硫化氢(PPM)", EnvironmentItemValue = 15 });
+            EnvironmentModelList.Add(new EnvironmentModel { EnvironmentItemName = "氮气(PPM)", EnvironmentItemValue = 20 });
+            #endregion
+
+            #region 初始化报警数据
+            AlarmList = new List<AlarmModel>();
+            AlarmList.Add(new AlarmModel() { Code = "01", Duration = 7, Message = "设备温度过高", Time = "2024-08-04" });
+            AlarmList.Add(new AlarmModel() { Code = "02", Duration = 12, Message = "车间温度过高", Time = "2024-08-03" });
+            AlarmList.Add(new AlarmModel() { Code = "03", Duration = 6, Message = "设备转速过快", Time = "2024-08-02" });
+            AlarmList.Add(new AlarmModel() { Code = "04", Duration = 1, Message = "设备气压过低", Time = "2024-08-01" });
+            AlarmList.Add(new AlarmModel() { Code = "05", Duration = 3, Message = "设备脱机", Time = "2024-08-01" });
+            #endregion
 
             InitializeTimer();
         }
+        #endregion
     }
 }

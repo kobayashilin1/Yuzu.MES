@@ -244,8 +244,8 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <!--  第二行：第一列  -->
-            <!--  第二行：第一列：环境模块  -->
             <UniformGrid Grid.Column="0" Columns="1">
+                <!--  第二行：第一列：环境模块  -->
                 <GroupBox Header="环境" Style="{StaticResource groupBoxStyle}">
                     <ItemsControl VerticalAlignment="Center" ItemsSource="{Binding EnvironmentModelList}">
                         <ItemsControl.ItemsPanel>
@@ -276,6 +276,7 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </GroupBox>
+                <!--  第二行：第一列：产能模块  -->
                 <GroupBox Header="产能" Style="{StaticResource groupBoxStyle}">
                     <Grid>
                         <!--  图例  -->
@@ -311,7 +312,7 @@
                                 <lvc:Axis Labels="8:00,9:00,10:00,11:00,12:00,13:00,14:00,15:00,16:00,17:00,18:00">
                                     <lvc:Axis.Separator>
                                         <!--  设置步长  -->
-                                        <lvc:Separator Step="1" StrokeThickness="0" />
+                                        <lvc:Separator Step="2" StrokeThickness="0" />
                                     </lvc:Axis.Separator>
                                 </lvc:Axis>
                             </lvc:CartesianChart.AxisX>
@@ -344,7 +345,6 @@
                                         </LinearGradientBrush>
                                     </lvc:ColumnSeries.Fill>
                                 </lvc:ColumnSeries>
-
                             </lvc:CartesianChart.Series>
 
                             <!--  修改Y轴数据刻度  -->
@@ -358,8 +358,134 @@
                         </lvc:CartesianChart>
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="质量" Style="{StaticResource groupBoxStyle}" />
+                <GroupBox Header="质量" Style="{StaticResource groupBoxStyle}">
+                    <!--  第二行：第一列：质量模块  -->
+                    <Grid>
+                        <lvc:CartesianChart>
+                            <!--  定义X轴数据  -->
+                            <lvc:CartesianChart.AxisX>
+                                <lvc:Axis Labels="1#,2#,3#,4#,5#,6#">
+                                    <lvc:Axis.Separator>
+                                        <!--  将网格线厚度设为0  -->
+                                        <lvc:Separator Step="1" StrokeThickness="0" />
+                                    </lvc:Axis.Separator>
+                                </lvc:Axis>
+                            </lvc:CartesianChart.AxisX>
+                            <!--  定义Y轴数据  -->
+                            <lvc:CartesianChart.Series>
+                                <!--  Y轴数据：改为线条样式  -->
+                                <lvc:LineSeries
+                                    Title="质量"
+                                    PointGeometrySize="0"
+                                    Stroke="#ff2bedf1"
+                                    Values="8,2, 4, 6,13,9">
+                                    <lvc:LineSeries.Fill>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                            <GradientStop Offset="0" Color="#552bedf1" />
+                                            <GradientStop Offset="1" Color="Transparent" />
+                                        </LinearGradientBrush>
+                                    </lvc:LineSeries.Fill>
+                                </lvc:LineSeries>
+                            </lvc:CartesianChart.Series>
+                            <!--  定义Y轴刻度  -->
+                            <lvc:CartesianChart.AxisY>
+                                <lvc:Axis MaxValue="15" MinValue="0">
+                                    <lvc:Axis.Separator>
+                                        <lvc:Separator Step="3" StrokeThickness="0" />
+                                    </lvc:Axis.Separator>
+                                </lvc:Axis>
+                            </lvc:CartesianChart.AxisY>
+                        </lvc:CartesianChart>
+                    </Grid>
+                </GroupBox>
             </UniformGrid>
+            <!--  第二行：第二列  -->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <!--  第二行：第二列：第一行  -->
+                <!--  图片  -->
+                <Image Source="../Resource/Images/device.png" />
+                <!--  第二行：第二列：第二行  -->
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <StackPanel
+                        Grid.Row="0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                        <!--  警示图标  -->
+                        <TextBlock
+                            Margin="3,0"
+                            VerticalAlignment="Center"
+                            FontFamily="../Resource/Fonts/#iconfont"
+                            Foreground="#99ffffff"
+                            Text="&#xe871;" />
+                        <TextBlock
+                            Margin="3,0"
+                            VerticalAlignment="Center"
+                            FontFamily="../Resource/Fonts/#iconfont"
+                            Foreground="#99ffffff"
+                            Text="报警记录" />
+                    </StackPanel>
+                    <!--  报警具体内容，绑定后台数据  -->
+                    <ItemsControl Grid.Row="1" ItemsSource="{Binding AlarmList}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type StackPanel}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid Height="25">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="20" />
+                                            <ColumnDefinition Width="30" />
+                                            <ColumnDefinition Width="150" />
+                                            <ColumnDefinition Width="100" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Ellipse
+                                            Grid.Column="0"
+                                            Width="6"
+                                            Height="6"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Fill="Red" />
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Foreground="#992bedf1"
+                                            Text="{Binding Code}" />
+                                        <TextBlock
+                                            Grid.Column="2"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Foreground="#992bedf1"
+                                            Text="{Binding Message}" />
+                                        <TextBlock
+                                            Grid.Column="3"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Foreground="#992bedf1"
+                                            Text="{Binding Duration, StringFormat=时长{0}秒}" />
+                                        <TextBlock
+                                            Grid.Column="4"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Foreground="#992bedf1"
+                                            Text="{Binding Time}" />
+
+                                    </Grid>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

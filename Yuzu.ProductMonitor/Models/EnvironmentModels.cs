@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Yuzu.ProductMonitor.Models
 {
-    public class EnvironmentModels
+    /// <summary>
+    /// 环境数据模型
+    /// </summary>
+    public class EnvironmentModel
     {
         // 环境项的名称
         public string EnvironmentItemName { get; set; }
