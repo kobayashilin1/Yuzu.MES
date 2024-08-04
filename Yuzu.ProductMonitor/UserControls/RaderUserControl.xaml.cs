@@ -79,7 +79,9 @@ namespace Yuzu.ProductMonitor.UserControls
                 polygon3.Points.Add(new Point(radius + x * 0.5, radius + y * 0.5));
                 polygon4.Points.Add(new Point(radius + x * 0.25, radius + y * 0.25));
                 // 数据多边形
-                polygon5.Points.Add(new Point(radius + x * ItemSource[i].ItemValue * 0.01, radius + y * ItemSource[i].ItemValue * 0.01));
+                polygon5.Points.Add(new Point(
+                    radius + x * ItemSource[i].ItemValue * 0.01, 
+                    radius + y * ItemSource[i].ItemValue * 0.01));
 
                 // 文字处理
                 TextBlock txt = new TextBlock();
@@ -88,8 +90,10 @@ namespace Yuzu.ProductMonitor.UserControls
                 txt.TextAlignment = TextAlignment.Center;
                 txt.Text = ItemSource[i].ItemName;
                 txt.Foreground = new SolidColorBrush(Color.FromArgb(100, 255, 255, 255));
-                txt.SetValue(Canvas.LeftProperty, radius + (radius - 10) * Math.Cos((step * i - 90) * Math.PI / 180) - 30); //设置左边间距
-                txt.SetValue(Canvas.TopProperty, radius + (radius - 10) * Math.Sin((step * i - 90) * Math.PI / 180) - 7);   //设置上边间距
+                txt.SetValue(Canvas.LeftProperty, 
+                    radius + (radius - 10) * Math.Cos((step * i - 90) * Math.PI / 180) - 30); //设置左边间距
+                txt.SetValue(Canvas.TopProperty, 
+                    radius + (radius - 10) * Math.Sin((step * i - 90) * Math.PI / 180) - 7);   //设置上边间距
 
                 masterCanvas.Children.Add(txt);
             }

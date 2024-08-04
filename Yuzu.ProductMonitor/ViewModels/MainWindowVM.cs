@@ -229,11 +229,11 @@ namespace Yuzu.ProductMonitor.ViewModels
             #region 初始化雷达图数据
             RaderList = new List<RaderModel>();
             raderList.Add(new RaderModel { ItemName = "排水烟风机", ItemValue = 90 });
-            raderList.Add(new RaderModel { ItemName = "客梯", ItemValue = 45 });
-            raderList.Add(new RaderModel { ItemName = "供水机", ItemValue = 56 });
-            raderList.Add(new RaderModel { ItemName = "喷淋水泵", ItemValue = 90 });
             raderList.Add(new RaderModel { ItemName = "稳压设备", ItemValue = 67.2 });
             raderList.Add(new RaderModel { ItemName = "变电设备", ItemValue = 83 });
+            raderList.Add(new RaderModel { ItemName = "喷淋水泵", ItemValue = 90 });
+            raderList.Add(new RaderModel { ItemName = "客梯", ItemValue = 45 });
+            raderList.Add(new RaderModel { ItemName = "供水机", ItemValue = 56 });
             #endregion
 
             InitializeTimer();

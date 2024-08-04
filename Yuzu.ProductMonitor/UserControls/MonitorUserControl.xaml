@@ -579,11 +579,12 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </GroupBox>
-                <!--  第二行：第三列：第一行：能耗模块  -->
+                <!--  第二行：第三列：第二行：能耗模块  -->
                 <GroupBox Header="能耗" Style="{StaticResource groupBoxStyle}">
                     <!--  这里使用了雷达图：定义一个用户控件  -->
-                    <radar:RaderUserControl ItemSource="{Binding RaderList}"/>
+                    <radar:RaderUserControl ItemSource="{Binding RaderList}" />
                 </GroupBox>
+                <!--  第二行：第三列：第三行：模块  -->
                 <GroupBox Header="人力" Style="{StaticResource groupBoxStyle}" />
             </UniformGrid>
         </Grid>
