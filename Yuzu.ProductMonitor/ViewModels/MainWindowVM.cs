@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using Yuzu.ProductMonitor.UserControls;
+using Yuzu.ProductMonitor.Models;
 
 namespace Yuzu.ProductMonitor.ViewModels
 {
+
     /// <summary>
     /// 主界面的视图模型（ViewModel）
     /// </summary>
     public class MainWindowVM : ObservableObject
     {
+        #region 计时器
         private readonly DispatcherTimer timer = new DispatcherTimer();
 
         private string time = string.Empty;
@@ -58,7 +61,9 @@ namespace Yuzu.ProductMonitor.ViewModels
             };
             timer.Start();
         }
+        #endregion
 
+        #region 用户控件
         // 监视用户控件：因为以后会定义别的控件，所以类型统一使用 UserControl
         private UserControl? monitorUserControl;
         public UserControl? MonitorUserControl
@@ -73,7 +78,9 @@ namespace Yuzu.ProductMonitor.ViewModels
                 RaisePropertyChanged();
             }
         }
+        #endregion
 
+        #region 计数
         // 机台总数
         private string machineCount;
         public string MachineCount
@@ -115,6 +122,16 @@ namespace Yuzu.ProductMonitor.ViewModels
                 }
             }
         }
+        #endregion
+
+        #region 环境监控数据
+        private List<EnvironmentModels> environmentModelList = new List<EnvironmentModels>();
+        public List<EnvironmentModels> EnvironmentModelList
+        {
+            get => environmentModelList;
+            set { environmentModelList = value; RaisePropertyChanged(); }
+        }
+        #endregion
 
         public MainWindowVM()
         {
@@ -124,6 +141,15 @@ namespace Yuzu.ProductMonitor.ViewModels
             machineCount = "0442";
             ProductCount = "11423";
             BadCount = "0122";
+
+            // 初始化环境监控数据：生产环境中从下位机获取
+            EnvironmentModelList.Add(new EnvironmentModels { EnvironmentItemName = "光照(Lux)", EnvironmentItemValue = 123 });
+            EnvironmentModelList.Add(new EnvironmentModels { EnvironmentItemName = "噪音(dB)", EnvironmentItemValue = 55 });
+            EnvironmentModelList.Add(new EnvironmentModels { EnvironmentItemName = "温度(℃)", EnvironmentItemValue = 30 });
+            EnvironmentModelList.Add(new EnvironmentModels { EnvironmentItemName = "湿度(%)", EnvironmentItemValue = 90 });
+            EnvironmentModelList.Add(new EnvironmentModels { EnvironmentItemName = "PM2.5(m³)", EnvironmentItemValue = 40 });
+            EnvironmentModelList.Add(new EnvironmentModels { EnvironmentItemName = "硫化氢(PPM)", EnvironmentItemValue = 15 });
+            EnvironmentModelList.Add(new EnvironmentModels { EnvironmentItemName = "氮气(PPM)", EnvironmentItemValue = 20 });
 
             InitializeTimer();
         }
