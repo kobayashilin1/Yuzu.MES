@@ -8,10 +8,119 @@
     Width="1200"
     Height="675"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="groupBoxStyle" TargetType="{x:Type GroupBox}">
+            <Setter Property="Margin" Value="10,3" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GroupBox}">
+                        <Grid>
+                            <!--  左上角  -->
+                            <Polyline
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Points="0 30,0 10,10 0,30 0"
+                                Stroke="#5518aabd"
+                                StrokeThickness="1" />
+                            <!--  点：使用 Margin 控制该点的位置  -->
+                            <!--  左上点1：上侧  -->
+                            <Ellipse
+                                Width="4"
+                                Height="4"
+                                Margin="28,-2,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Fill="#5518aabd" />
+                            <!--  左上点2：左侧  -->
+                            <Ellipse
+                                Width="4"
+                                Height="4"
+                                Margin="-2,28,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Fill="#5518aabd" />
+                            <!--  右上角：看作两条线  -->
+                            <!--  Path: 运动的轨迹；M: MovoTo  -->
+                            <Path
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Data="M0 0,3 3,30 3,33 0,63 0,68 7,73 7,73 10 M8 0,25 0"
+                                Stroke="#5518aabd" />
+                            <!--  左下角  -->
+                            <Polyline
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Bottom"
+                                Points="0 0, 0 15, 15 15"
+                                Stroke="#5518aabd"
+                                StrokeThickness="1" />
+                            <!--  右下角  -->
+                            <!--  右下角的线  -->
+                            <Polyline
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Points="10 0, 0 10"
+                                Stroke="#5518aabd"
+                                StrokeThickness="1" />
+                            <!--  右下角的三角形  -->
+                            <Polygon
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Fill="#5518aabd"
+                                Points="0 7, 7 7, 7 0" />
+                            <!--  四条线  -->
+                            <!--  上面的线  -->
+                            <Border
+                                Margin="30,-0.5,73,-0.5"
+                                VerticalAlignment="Top"
+                                BorderBrush="#5518aabd"
+                                BorderThickness="0,1,0,0" />
+                            <!--  下面的线  -->
+                            <Border
+                                Margin="15,0,10,0"
+                                VerticalAlignment="Bottom"
+                                BorderBrush="#5518aabd"
+                                BorderThickness="0,0,0,1" />
+                            <!--  左面的线  -->
+                            <Border
+                                Margin="-0.5,31,-0.5,15"
+                                HorizontalAlignment="Left"
+                                BorderBrush="#5518aabd"
+                                BorderThickness="1,0,0,0" />
+                            <!--  右面的线  -->
+                            <Border
+                                Margin="0,10,0,10"
+                                HorizontalAlignment="Right"
+                                BorderBrush="#5518aabd"
+                                BorderThickness="1,0,0,0" />
+                            <!--  文字前的装饰  -->
+                            <Path
+                                Margin="15,13"
+                                Data="M0 0, 5 5, 0 10"
+                                Stroke="#9918aabd"
+                                StrokeThickness="3" />
+                            <Path
+                                Margin="22,13"
+                                Data="M0 0, 5 5, 0 10"
+                                Stroke="#5518aabd"
+                                StrokeThickness="3" />
+                            <TextBlock
+                                Margin="33,10"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                Text="{TemplateBinding Header}" />
+                            <ContentPresenter />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
-            <RowDefinition Height="auto" />
+            <RowDefinition />
             <RowDefinition Height="150" />
         </Grid.RowDefinitions>
         <!--  第一行  -->
@@ -125,6 +234,20 @@
                 Content="配置"
                 Style="{StaticResource BtnStyle}"
                 Tag="&#xe6bb;" />
+        </Grid>
+        <!--  第二行  -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <!--  第二行：第一列  -->
+            <UniformGrid Grid.Column="0" Columns="1">
+                <GroupBox Header="环境" Style="{StaticResource groupBoxStyle}" />
+                <GroupBox Header="产能" Style="{StaticResource groupBoxStyle}" />
+                <GroupBox Header="质量" Style="{StaticResource groupBoxStyle}" />
+            </UniformGrid>
         </Grid>
     </Grid>
 </UserControl>
