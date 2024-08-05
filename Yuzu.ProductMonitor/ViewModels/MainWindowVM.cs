@@ -185,6 +185,38 @@ namespace Yuzu.ProductMonitor.ViewModels
         }
         #endregion
 
+        #region 人力资源属性
+        private HumanResourceModel humanResource;
+        public HumanResourceModel HumanResource
+        {
+            get => humanResource;
+            set
+            {
+                if (humanResource != value)
+                {
+                    humanResource = value; RaisePropertyChanged();
+                }
+            }
+        }
+        #endregion
+
+        #region 员工缺岗属性
+        private List<StuffOutOfWorkModel> stuffOutOfWorkList = new List<StuffOutOfWorkModel>();
+        public List<StuffOutOfWorkModel> StuffOutOfWorkList
+        {
+            get => stuffOutOfWorkList;
+            set
+            {
+                if (stuffOutOfWorkList != value)
+                {
+                    stuffOutOfWorkList = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        #endregion
+
         #region 构造器
         public MainWindowVM()
         {
@@ -236,8 +268,41 @@ namespace Yuzu.ProductMonitor.ViewModels
             raderList.Add(new RaderModel { ItemName = "供水机", ItemValue = 56 });
             #endregion
 
+            #region 初始化人力资源数据
+            humanResource = new HumanResourceModel("在岗总人数", 566);
+            #endregion
+
+            #region 初始化员工缺岗数据
+            StuffOutOfWorkList.Add(new StuffOutOfWorkModel { StuffName = "张三", OutOfWorkCount = 12, PositionName = "技术员" });
+            StuffOutOfWorkList.Add(new StuffOutOfWorkModel { StuffName = "李四", OutOfWorkCount = 30, PositionName = "技术员" });
+            StuffOutOfWorkList.Add(new StuffOutOfWorkModel { StuffName = "王五", OutOfWorkCount = 61, PositionName = "操作员" });
+            StuffOutOfWorkList.Add(new StuffOutOfWorkModel { StuffName = "赵六", OutOfWorkCount = 2, PositionName = "技术员" });
+            StuffOutOfWorkList.Add(new StuffOutOfWorkModel { StuffName = "何七七", OutOfWorkCount = 18, PositionName = "技术员" });
+            StuffOutOfWorkList.Sort(new StuffOutOfWorkComparer());
+            #endregion
+
             InitializeTimer();
         }
         #endregion
     }
+
+    #region 比较器
+    /// <summary>
+    /// StuffOutOfWork 比较器，需要传入 StuffOutOfWork 实例
+    /// </summary>
+    public class StuffOutOfWorkComparer : IComparer<StuffOutOfWorkModel>
+    {
+        public int Compare(StuffOutOfWorkModel x, StuffOutOfWorkModel y)
+        {
+            if (x.OutOfWorkCount != y.OutOfWorkCount)
+            {
+                return x.OutOfWorkCount.CompareTo(y.OutOfWorkCount);
+            }
+            else
+            {
+                return x.StuffName.CompareTo(y.StuffName);
+            }
+        }
+    }
+    #endregion
 }

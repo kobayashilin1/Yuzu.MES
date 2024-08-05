@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
   </ItemGroup>
 
@@ -28,6 +24,10 @@
     <Resource Include="Resource\Fonts\iconfont.ttf" />
     <Resource Include="Resource\Images\device.png" />
     <Resource Include="Resource\Images\Logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\" />
   </ItemGroup>
 
 </Project>
