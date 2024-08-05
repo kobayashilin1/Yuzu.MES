@@ -721,13 +721,15 @@
                                 Foreground="#3ebee7"
                                 Text="{Binding WorkShopName}" />
                             <!--  第一行第二列  -->
+                            <!--  告知上一级为 Window，资源在界面里面，否则点击后无效果  -->
                             <Button
                                 Grid.Row="0"
                                 Grid.Column="1"
                                 Margin="0,0,0,0"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Top"
-                                Background="Transparent">
+                                Background="Transparent"
+                                Command="{Binding ShowDetailCmd, RelativeSource={RelativeSource AncestorType=Window}}">
                                 <Button.Style>
                                     <Style TargetType="{x:Type Button}">
                                         <Setter Property="Template">

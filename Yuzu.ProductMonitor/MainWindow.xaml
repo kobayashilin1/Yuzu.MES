@@ -119,7 +119,10 @@
         </Border>
         <!--  第二行：内容区域：用户控件  -->
         <!--  双向绑定：绑定用户控件  -->
-        <ContentControl Grid.Row="1" Content="{Binding MonitorUserControl}" />
+        <ContentControl
+            x:Name="content"
+            Grid.Row="1"
+            Content="{Binding MonitorUserControl}" />
         <!--  第三行：底部  -->
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
