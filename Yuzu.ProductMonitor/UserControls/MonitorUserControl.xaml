@@ -652,11 +652,21 @@
                                                 <!--  统计图  -->
                                                 <StackPanel Grid.Column="3" Orientation="Horizontal">
                                                     <Border
-                                                        Width="{Binding OutOfWorkCount}"
+                                                        Width="{Binding ShowWidth}"
                                                         Height="5"
-                                                        Margin="0,0,5,0"
+                                                        Margin="5,0,5,0"
                                                         HorizontalAlignment="Center"
-                                                        Background="#18aabd" />
+                                                        Background="#18aabd">
+                                                        <Border.ToolTip>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock
+                                                                    Margin="0,0,3,0"
+                                                                    FontSize="12"
+                                                                    Text="{Binding StuffName}" />
+                                                                <TextBlock FontSize="12" Text="{Binding OutOfWorkCount}" />
+                                                            </StackPanel>
+                                                        </Border.ToolTip>
+                                                    </Border>
                                                     <!--  高于30的模块标红，使用自定义的转换器  -->
                                                     <TextBlock
                                                         Margin="4,0,0,0"

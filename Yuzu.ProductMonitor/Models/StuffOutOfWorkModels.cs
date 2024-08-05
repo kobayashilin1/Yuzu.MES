@@ -17,6 +17,8 @@ namespace Yuzu.ProductMonitor.Models
         public string PositionName { get; set; }
         // 缺席时间(min)
         public int OutOfWorkCount { get; set; }
+        // 显示宽度
+        public double ShowWidth { get => OutOfWorkCount * 0.6; }
         public StuffOutOfWorkModel() { }
         public StuffOutOfWorkModel(StuffOutOfWorkModel otherStuff)
         {
