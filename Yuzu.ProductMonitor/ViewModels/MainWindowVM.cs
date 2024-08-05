@@ -8,6 +8,7 @@ using System.Windows.Threading;
 using Yuzu.ProductMonitor.UserControls;
 using Yuzu.ProductMonitor.Models;
 using System.Collections.ObjectModel;
+using System.Windows.Navigation;
 
 namespace Yuzu.ProductMonitor.ViewModels
 {
@@ -217,6 +218,22 @@ namespace Yuzu.ProductMonitor.ViewModels
 
         #endregion
 
+        #region 车间数据属性
+        private List<WorkShopModel> workShopList;
+        public List<WorkShopModel> WorkShopList
+        {
+            get => workShopList;
+            set
+            {
+                if (value != null)
+                {
+                    workShopList = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+        #endregion
+
         #region 构造器
         public MainWindowVM()
         {
@@ -281,28 +298,37 @@ namespace Yuzu.ProductMonitor.ViewModels
             StuffOutOfWorkList.Sort(new StuffOutOfWorkComparer());
             #endregion
 
-            InitializeTimer();
-        }
-        #endregion
-    }
+            #region 初始化车间数据
+            WorkShopList = new List<WorkShopModel>();
+            WorkShopList.Add(new WorkShopModel { WorkShopName = "车间1" , WorkingCount = 12, StopCount = 3, WaitingCount = 1, ErrorCount = 0});
+            WorkShopList.Add(new WorkShopModel { WorkShopName = "车间2" , WorkingCount =11, StopCount = 0, WaitingCount = 4, ErrorCount = 1});
+            WorkShopList.Add(new WorkShopModel { WorkShopName = "车间3" , WorkingCount = 1, StopCount = 8, WaitingCount = 5, ErrorCount = 4});
+            WorkShopList.Add(new WorkShopModel { WorkShopName = "车间4" , WorkingCount = 15, StopCount = 6, WaitingCount = 1, ErrorCount = 7});
+            WorkShopList.Add(new WorkShopModel { WorkShopName = "车间5" , WorkingCount = 16, StopCount = 0, WaitingCount = 9, ErrorCount = 3});
+            #endregion
 
-    #region 比较器
-    /// <summary>
-    /// StuffOutOfWork 比较器，需要传入 StuffOutOfWork 实例
-    /// </summary>
-    public class StuffOutOfWorkComparer : IComparer<StuffOutOfWorkModel>
+            InitializeTimer();
+    }
+    #endregion
+}
+
+#region 比较器
+/// <summary>
+/// StuffOutOfWork 比较器，需要传入 StuffOutOfWork 实例
+/// </summary>
+public class StuffOutOfWorkComparer : IComparer<StuffOutOfWorkModel>
+{
+    public int Compare(StuffOutOfWorkModel x, StuffOutOfWorkModel y)
     {
-        public int Compare(StuffOutOfWorkModel x, StuffOutOfWorkModel y)
+        if (x.OutOfWorkCount != y.OutOfWorkCount)
         {
-            if (x.OutOfWorkCount != y.OutOfWorkCount)
-            {
-                return x.OutOfWorkCount.CompareTo(y.OutOfWorkCount);
-            }
-            else
-            {
-                return x.StuffName.CompareTo(y.StuffName);
-            }
+            return x.OutOfWorkCount.CompareTo(y.OutOfWorkCount);
+        }
+        else
+        {
+            return x.StuffName.CompareTo(y.StuffName);
         }
     }
+}
     #endregion
 }

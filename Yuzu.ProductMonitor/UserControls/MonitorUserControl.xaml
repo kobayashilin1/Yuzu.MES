@@ -686,5 +686,168 @@
                 </GroupBox>
             </UniformGrid>
         </Grid>
+        <!--  第三行  -->
+        <!--  只能在一行显示  -->
+        <ItemsControl Grid.Row="2" ItemsSource="{Binding WorkShopList}">
+            <!--  整体的排列方式  -->
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="1" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <!--  每一个项的模板  -->
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        Margin="10,5"
+                        Background="#01a8aabd"
+                        BorderBrush="#9918aabd"
+                        BorderThickness="0,1,0,0">
+                        <Grid>
+                            <!--  定义两行两列  -->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="2*" />
+                            </Grid.RowDefinitions>
+                            <!--  第一行第一列  -->
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Margin="0,5,0,0"
+                                Foreground="#3ebee7"
+                                Text="{Binding WorkShopName}" />
+                            <!--  第一行第二列  -->
+                            <Button
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Margin="0,0,0,0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Background="Transparent">
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border
+                                                        Width="60"
+                                                        Height="30"
+                                                        Padding="0,3"
+                                                        Background="{TemplateBinding Background}">
+                                                        <TextBlock
+                                                            HorizontalAlignment="Right"
+                                                            VerticalAlignment="Top"
+                                                            Text="[详情]" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="AliceBlue" />
+                                            </Trigger>
+                                            <Trigger Property="IsMouseOver" Value="False">
+                                                <Setter Property="Foreground" Value="#3ebee7" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                            <!--  第二行第一列  -->
+                            <StackPanel
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Orientation="Vertical">
+                                <TextBlock
+                                    Margin="0,0,0,5"
+                                    FontSize="12"
+                                    Foreground="#99ffffff"
+                                    Text="机台总数" />
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Top"
+                                    FontSize="20"
+                                    Foreground="#99ffffff"
+                                    Text="{Binding TotalCount}" />
+
+                            </StackPanel>
+                            <!--  第二行第二列  -->
+                            <UniformGrid
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Columns="2"
+                                Rows="2">
+                                <StackPanel>
+                                    <TextBlock
+                                        Margin="0,0,0,5"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="12"
+                                        Foreground="#2189dc"
+                                        Text="{Binding WorkingCount}" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="12"
+                                        Foreground="#99ffffff"
+                                        Text="作业" />
+                                </StackPanel>
+                                <StackPanel>
+                                    <TextBlock
+                                        Margin="0,0,0,5"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="12"
+                                        Foreground="#ddae15"
+                                        Text="{Binding WaitingCount}" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="12"
+                                        Foreground="#99ffffff"
+                                        Text="等待" />
+                                </StackPanel>
+                                <StackPanel>
+                                    <TextBlock
+                                        Margin="0,0,0,5"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="12"
+                                        Foreground="#f34336"
+                                        Text="{Binding ErrorCount}" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="12"
+                                        Foreground="#99ffffff"
+                                        Text="故障" />
+                                </StackPanel>
+                                <StackPanel>
+                                    <TextBlock
+                                        Margin="0,0,0,5"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="12"
+                                        Foreground="#99ffffff"
+                                        Text="{Binding StopCount}" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="12"
+                                        Foreground="#99ffffff"
+                                        Text="停机" />
+                                </StackPanel>
+                            </UniformGrid>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>
