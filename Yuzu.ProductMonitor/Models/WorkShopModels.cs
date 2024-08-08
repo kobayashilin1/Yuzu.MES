@@ -3,25 +3,65 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Yuzu.ProductMonitor.ViewModels;
 
 namespace Yuzu.ProductMonitor.Models
 {
     /// <summary>
     /// 车间数据模型
     /// </summary>
-    public class WorkShopModel
+    public class WorkShopModel : ObservableObject
     {
         // 车间名称
-        public string WorkShopName { get; set; }
+        private string workShopName;
+        public string WorkShopName
+        {
+            get => workShopName;
+            set
+            {
+                if (workShopName != value)
+                {
+                    workShopName = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
 
         // 作业数量
-        public int WorkingCount { get; set; }
+        private int workingCount;
+        public int WorkingCount
+        {
+            get => workingCount;
+            set
+            {
+                workingCount = value; RaisePropertyChanged();
+            }
+        }
 
         // 等待数量
-        public int WaitingCount { get; set; }
+        private int waitingCount;
+        public int WaitingCount
+        {
+            get => waitingCount;
+            set
+            {
+                waitingCount = value; RaisePropertyChanged();
+            }
+        }
 
         // 故障数量
-        public int ErrorCount { get; set; }
+        private int errorCount;
+        public int ErrorCount
+        {
+            get => errorCount;
+            set
+            {
+                if (errorCount != value)
+                {
+                    errorCount = value; RaisePropertyChanged();
+                }
+            }
+        }
 
         // 停机数量
         public int StopCount { get; set; }
@@ -32,7 +72,7 @@ namespace Yuzu.ProductMonitor.Models
             get
             {
                 return WorkingCount + WaitingCount + ErrorCount + StopCount;
-            }   
+            }
         }
     }
 }

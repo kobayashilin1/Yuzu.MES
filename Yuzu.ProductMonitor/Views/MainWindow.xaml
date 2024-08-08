@@ -1,14 +1,19 @@
 ﻿<Window
-    x:Class="Yuzu.ProductMonitor.MainWindow"
+    x:Class="Yuzu.ProductMonitor.Views.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Yuzu.ProductMonitor"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:Yuzu.ProductMonitor.ViewModels"
     Title="Yuzu生产监控平台"
     Width="1200"
     Height="750"
     mc:Ignorable="d">
+    <Window.Resources>
+        <!--  引入自定义转换器  -->
+        <vm:CountToColorConverter x:Key="CountToColorConverter" />
+    </Window.Resources>
     <WindowChrome.WindowChrome>
         <!--  Window 边框厚度设为0，隐藏边框  -->
         <WindowChrome GlassFrameThickness="0" />

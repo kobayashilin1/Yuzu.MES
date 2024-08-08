@@ -12,7 +12,8 @@ using Yuzu.ProductMonitor.UserControls;
 using Yuzu.ProductMonitor.ViewModels;
 using Yuzu.ProductMonitor.Commands;
 
-namespace Yuzu.ProductMonitor
+
+namespace Yuzu.ProductMonitor.Views
 {
     public partial class MainWindow : Window
     {
